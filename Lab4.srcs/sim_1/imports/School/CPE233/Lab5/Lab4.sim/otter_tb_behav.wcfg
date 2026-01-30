@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_pipeline_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="\$unit_ALU_sv_1128299142 " />
+            <top_module name="glbl" />
+            <top_module name="tb_pipeline" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="120.632 ns"></ZoomStartTime>
+      <ZoomEndTime time="335.874 ns"></ZoomEndTime>
+      <Cursor1Time time="279.574 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="125"></NameColumnWidth>
+      <ValueColumnWidth column_width="80"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="10" />
+   <wvobject fp_name="/tb_pipeline/CLK" type="logic">
+      <obj_property name="ElementShortName">CLK</obj_property>
+      <obj_property name="ObjectShortName">CLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/RESET" type="logic">
+      <obj_property name="ElementShortName">RESET</obj_property>
+      <obj_property name="ObjectShortName">RESET</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/IOBUS_IN" type="array">
+      <obj_property name="ElementShortName">IOBUS_IN[31:0]</obj_property>
+      <obj_property name="ObjectShortName">IOBUS_IN[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/IOBUS_OUT" type="array">
+      <obj_property name="ElementShortName">IOBUS_OUT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">IOBUS_OUT[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/IOBUS_ADDR" type="array">
+      <obj_property name="ElementShortName">IOBUS_ADDR[31:0]</obj_property>
+      <obj_property name="ObjectShortName">IOBUS_ADDR[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/IOBUS_WR" type="logic">
+      <obj_property name="ElementShortName">IOBUS_WR</obj_property>
+      <obj_property name="ObjectShortName">IOBUS_WR</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/uut/pc" type="array">
+      <obj_property name="ElementShortName">pc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pc[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/uut/OTTER_MEMORY/MEM_DOUT1" type="array">
+      <obj_property name="ElementShortName">MEM_DOUT1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">MEM_DOUT1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/uut/OTTER_MEMORY/MEM_DOUT2" type="array">
+      <obj_property name="ElementShortName">MEM_DOUT2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">MEM_DOUT2[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_pipeline/uut/REG_FILE/reg_file" type="array">
+      <obj_property name="ElementShortName">reg_file[0:31][31:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_file[0:31][31:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+</wave_config>

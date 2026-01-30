@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="otter_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="otter_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="415.240 ns"></ZoomStartTime>
+      <ZoomEndTime time="815.241 ns"></ZoomEndTime>
+      <Cursor1Time time="800.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="152"></NameColumnWidth>
+      <ValueColumnWidth column_width="86"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="15" />
+   <wvobject fp_name="/otter_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/otter_tb/iobus_in" type="array">
+      <obj_property name="ElementShortName">iobus_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">iobus_in[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/otter_tb/iobus_addr" type="array">
+      <obj_property name="ElementShortName">iobus_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">iobus_addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/otter_tb/iobus_out" type="array">
+      <obj_property name="ElementShortName">iobus_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">iobus_out[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/otter_tb/iobus_wr" type="logic">
+      <obj_property name="ElementShortName">iobus_wr</obj_property>
+      <obj_property name="ObjectShortName">iobus_wr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/otter_tb/my_otter/cu_fsm/PS" type="array">
+      <obj_property name="ElementShortName">PS[1:0]</obj_property>
+      <obj_property name="ObjectShortName">PS[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/otter_tb/my_otter/cu_fsm/OPCODE" type="array">
+      <obj_property name="ElementShortName">OPCODE[6:0]</obj_property>
+      <obj_property name="ObjectShortName">OPCODE[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/otter_tb/my_otter/pc_out" type="array">
+      <obj_property name="ElementShortName">pc_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_out[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/otter_tb/my_otter/register/data_in" type="array">
+      <obj_property name="ElementShortName">data_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">data_in[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/otter_tb/my_otter/OTTER_MEMORY/MEM_DOUT1" type="array">
+      <obj_property name="ElementShortName">MEM_DOUT1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">MEM_DOUT1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/otter_tb/my_otter/register/ld" type="logic">
+      <obj_property name="ElementShortName">ld</obj_property>
+      <obj_property name="ObjectShortName">ld</obj_property>
+   </wvobject>
+   <wvobject fp_name="/otter_tb/my_otter/OTTER_MEMORY/MEM_DOUT2" type="array">
+      <obj_property name="ElementShortName">MEM_DOUT2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">MEM_DOUT2[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/otter_tb/my_otter/reg_file/en" type="logic">
+      <obj_property name="ElementShortName">en</obj_property>
+      <obj_property name="ObjectShortName">en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/otter_tb/my_otter/reg_file/w_data" type="array">
+      <obj_property name="ElementShortName">w_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">w_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/otter_tb/my_otter/reg_file/reg_file" type="array">
+      <obj_property name="ElementShortName">reg_file[0:31][31:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_file[0:31][31:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+</wave_config>

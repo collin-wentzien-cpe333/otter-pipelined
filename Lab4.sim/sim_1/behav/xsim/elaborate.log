@@ -1,0 +1,23 @@
+Vivado Simulator v2025.1.0
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/Xilinx/2025.1/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_pipeline_behav xil_defaultlib.tb_pipeline xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+WARNING: [VRFC 10-2649] an enum variable may only be assigned the same enum typed variable or one of its values [C:/Users/collw/Documents/School/CPE 333/Lab7/file/otter_mcu_pipeline_template_v2.sv:134]
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package xil_defaultlib.$unit_ALU_sv_3376878820
+Compiling module xil_defaultlib.reg_nb(n=32)
+Compiling module xil_defaultlib.Memory
+Compiling module xil_defaultlib.RegFile
+Compiling module xil_defaultlib.immed_gen
+Compiling module xil_defaultlib.ALU
+Compiling module xil_defaultlib.branch_cond_gen
+Compiling module xil_defaultlib.OTTER_MCU
+Compiling module xil_defaultlib.tb_pipeline
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_pipeline_behav
