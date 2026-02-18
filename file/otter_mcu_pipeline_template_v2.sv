@@ -73,6 +73,15 @@ module OTTER_MCU(input CLK,
     // EX stage signals
     wire [31:0] aluResult;
     logic br_lt, br_eq, br_ltu;
+    
+    logic [31:0] rf_write_data;
+    
+    logic [31:0] ex_mem_rs2;
+    logic [31:0] ex_mem_aluRes;
+    
+    //other
+    logic branch_taken = 0;
+    logic [31:0] branch_pc;
               
 //==== Instruction Fetch ===========================================
 
@@ -105,10 +114,11 @@ module OTTER_MCU(input CLK,
     Memory OTTER_MEMORY (
         .MEM_CLK(CLK),
         .MEM_RDEN1(memRead1),
-        .MEM_RDEN2(memRead2),
+        .MEM_RDEN2(de_ex_inst.memRead2),
         .MEM_WE2(memWrite),
         .MEM_ADDR1(pc[15:2]),
         .MEM_ADDR2(ex_mem_aluRes),
+        .MEM_ADDR2_EARLY(aluResult),
         .MEM_DIN2(ex_mem_rs2),
         .MEM_SIZE(ex_mem_inst.mem_type[1:0]),
         .MEM_SIGN(ex_mem_inst.mem_type[2]),
@@ -267,8 +277,7 @@ module OTTER_MCU(input CLK,
 	
 	
 //==== Execute ======================================================
-    logic [31:0] ex_mem_rs2;
-    logic [31:0] ex_mem_aluRes;
+
     instr_t ex_mem_inst;
     
     ALU ALU_UNIT (
@@ -286,7 +295,6 @@ module OTTER_MCU(input CLK,
         .br_ltu(br_ltu)
     );
     
-    logic [31:0] branch_pc;
     always_comb begin
         case (de_ex_inst.opcode)
             JAL:     branch_pc = de_ex_jal_target;
@@ -295,9 +303,7 @@ module OTTER_MCU(input CLK,
             default: branch_pc = de_ex_inst.pc + 4;
         endcase
     end
-    
-    logic branch_taken = 0;
-    
+        
     always_comb begin
         case (de_ex_inst.opcode)
             JAL:     branch_taken = 1'b1;
@@ -355,7 +361,6 @@ module OTTER_MCU(input CLK,
     
 //==== Write Back ==================================================
      
-    logic [31:0] rf_write_data;
     always_comb begin
         case (mem_wb_inst.rf_wr_sel)
             2'b00:   rf_write_data = mem_wb_inst.pc + 4; // JAL/JALR

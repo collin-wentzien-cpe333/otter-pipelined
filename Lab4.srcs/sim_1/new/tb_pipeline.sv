@@ -24,13 +24,28 @@ module tb_pipeline();
         CLK = 0;
         forever #10 CLK = ~CLK;
     end
+    
+    /*
+    
+    addi x7, zero, 7
+    #addi x8, zero, 6000
+    li x8, 6000
+    addi x10, zero, 10
+    nop
+    nop
+    or x11, x7, x10
+    nop
+    nop
+    sw x11,0(x8)
+    
+    */
 
     initial begin
         RESET = 1;
         INTR = 0;
         IOBUS_IN = 32'b0;
 
-        #50;
+        #20;
         RESET = 0;
         
     end
