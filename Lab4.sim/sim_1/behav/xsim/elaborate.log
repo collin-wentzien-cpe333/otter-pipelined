@@ -7,7 +7,7 @@ Starting static elaboration
 Pass Through NonSizing Optimizer
 Completed static elaboration
 Starting simulation data flow analysis
-WARNING: [VRFC 10-2649] an enum variable may only be assigned the same enum typed variable or one of its values [C:/Users/collw/Documents/School/CPE 333/otter-pipelined/file/otter_mcu_pipeline_template_v2.sv:144]
+WARNING: [VRFC 10-2649] an enum variable may only be assigned the same enum typed variable or one of its values [C:/Users/collw/Documents/School/CPE 333/otter-pipelined/file/otter_mcu_pipeline_template_v2.sv:147]
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
 Compiling package xil_defaultlib.$unit_ALU_sv_3376878820

@@ -79,12 +79,15 @@ module OTTER_MCU(input CLK,
     logic [31:0] ex_mem_rs2;
     logic [31:0] ex_mem_aluRes;
     
+    // Forwarding select signals
+    logic [1:0] forwardA, forwardB;
+
     //other
     logic branch_taken = 0;
     logic [31:0] branch_pc;
               
 //==== Instruction Fetch ===========================================
-
+ 
     logic [31:0] if_de_pc;
     logic [31:0] if_de_ir;
     
@@ -276,20 +279,73 @@ module OTTER_MCU(input CLK,
     end
 	
 	
+//==== Forwarding Detection =========================================
+
+    // ForwardA (rs1)
+    always_comb begin
+        if (ex_mem_inst.regWrite
+            && ex_mem_inst.rd_addr == de_ex_inst.rs1_addr
+            && de_ex_inst.rs1_used)
+            forwardA = 2'b01;  // forward from EX/MEM
+        else if (mem_wb_inst.regWrite
+            && mem_wb_inst.rd_addr == de_ex_inst.rs1_addr
+            && de_ex_inst.rs1_used)
+            forwardA = 2'b10;  // forward from MEM/WB
+        else
+            forwardA = 2'b00;  // no forward
+    end
+
+    // ForwardB (rs2)
+    always_comb begin
+        if (ex_mem_inst.regWrite
+            && ex_mem_inst.rd_addr == de_ex_inst.rs2_addr
+            && de_ex_inst.rs2_used)
+            forwardB = 2'b01;  // forward from EX/MEM
+        else if (mem_wb_inst.regWrite
+            && mem_wb_inst.rd_addr == de_ex_inst.rs2_addr
+            && de_ex_inst.rs2_used)
+            forwardB = 2'b10;  // forward from MEM/WB
+        else
+            forwardB = 2'b00;  // no forward
+    end
+
 //==== Execute ======================================================
 
     instr_t ex_mem_inst;
-    
+
+    logic [31:0] ex_opA, ex_rs2, ex_aluB;
+
+    // ForwardA mux — selects rs1/opA source
+    always_comb begin
+        case (forwardA)
+            2'b01:   ex_opA = ex_mem_aluRes;   // from EX/MEM (previous instruction)
+            2'b10:   ex_opA = rf_write_data;    // from MEM/WB (two instructions back)
+            default: ex_opA = de_ex_opA;        // no forward
+        endcase
+    end
+
+    // ForwardB mux — selects rs2 source
+    always_comb begin
+        case (forwardB)
+            2'b01:   ex_rs2 = ex_mem_aluRes;
+            2'b10:   ex_rs2 = rf_write_data;
+            default: ex_rs2 = de_ex_rs2;
+        endcase
+    end
+
+    // ALU B input: use forwarded rs2 for R-type (OP), otherwise keep de_ex_opB (has immediate)
+    assign ex_aluB = (de_ex_inst.opcode == OP) ? ex_rs2 : de_ex_opB;
+
     ALU ALU_UNIT (
-        .a(de_ex_opA),
-        .b(de_ex_opB),
+        .a(ex_opA),
+        .b(ex_aluB),
         .ALU_FUN(de_ex_inst.alu_fun),
         .c(aluResult)
     );
-    
+
     branch_cond_gen BRANCH_COND (
-        .rs1(de_ex_opA),
-        .rs2(de_ex_rs2),
+        .rs1(ex_opA),
+        .rs2(ex_rs2),
         .br_eq(br_eq),
         .br_lt(br_lt),
         .br_ltu(br_ltu)
@@ -298,7 +354,7 @@ module OTTER_MCU(input CLK,
     always_comb begin
         case (de_ex_inst.opcode)
             JAL:     branch_pc = de_ex_jal_target;
-            JALR:    branch_pc = de_ex_jalr_target;
+            JALR:    branch_pc = ex_opA + de_ex_opB; // forwarded rs1 + I_immed
             BRANCH:  branch_pc = de_ex_branch_target;
             default: branch_pc = de_ex_inst.pc + 4;
         endcase
@@ -331,7 +387,7 @@ module OTTER_MCU(input CLK,
         end else begin
             ex_mem_inst   <= de_ex_inst;
             ex_mem_aluRes <= aluResult;
-            ex_mem_rs2    <= de_ex_rs2;
+            ex_mem_rs2    <= ex_rs2;
         end
     end
 
